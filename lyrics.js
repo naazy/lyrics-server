@@ -31,9 +31,11 @@ function splitByEquals(arg){
   return arg.split("=");
 }
 
+var lyrics = '';
+
+
 function returnLyrics(artist,track,language,handlerRes){
   var body ='';
-  var lyrics = '';
 
   var api = "http://api.chartlyrics.com/apiv1.asmx/SearchLyricDirect?";
 
@@ -54,10 +56,40 @@ console.log(ApiReqString);
       jsonObj = parser.toJson(xmlObj);
       jsonObjParsed=JSON.parse(jsonObj);
       lyrics=jsonObjParsed['GetLyricResult']['Lyric'];
+      translateLyrics(lyrics);
       handlerRes.end("<p>"+lyrics+"</p>");
         });
     });
 };
+
+var translateLyrics = function(lyrics){
+  // http://mymemory.translated.net/api/get?q=Hello%20World!&langpair=en|it
+  var body ='';
+
+  var api = "http://mymemory.translated.net/api/get?";
+
+  var ApiReqString = api +
+      querystring.stringify({ q:lyrics,langpair:"en|it"});
+      console.log(ApiReqString);
+  // apikey:process.env.apiKey
+
+  console.log(ApiReqString);
+
+  http.get(ApiReqString, function(res){
+    res.on('data', function(chunk) {
+        body+=chunk;
+      });
+
+    res.on('end', function(){
+      console.log(body);
+      // var xmlObj=body;
+      // jsonObj = parser.toJson(xmlObj);
+      // jsonObjParsed=JSON.parse(jsonObj);
+      // lyrics=jsonObjParsed['GetLyricResult']['Lyric'];
+      // handlerRes.end("<p>"+lyrics+"</p>");
+        });
+    });
+  };
 
 
 
