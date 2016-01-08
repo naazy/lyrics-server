@@ -7,7 +7,8 @@ var routes = {
   '/' : handler.home,
   '404' : handler.notFound,
   '/index' : handler.index,
-  '/lyrics' : lyrics.lyricsHandler
+  '/lyrics' : lyrics.lyricsHandler,
+  '/track' : lyrics.trackHandler
 };
 
 module.exports = function(req,res){

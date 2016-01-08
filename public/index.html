@@ -5,9 +5,14 @@
     <title>hello</title>
   </head>
   <body>
-    welcome
-    <a href="/lyrics">See lyrics</a>
-    <img src="http://tracking.musixmatch.com/t1.0/AMa6hJCIEzn1v8RuXW">
+    Lyric translator
+    <form action="/track" method="POST">
+      <input type="text" placeholder="Artist" name="artist"></input>
+      <input type="text" placeholder="Track title" name="title"></input>
+      <input type="text" placeholder="Language" name="language"></input>
+      <input type="submit"></input>
+    </form>
+
   </body>
 
 
