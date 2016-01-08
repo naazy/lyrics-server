@@ -44,7 +44,7 @@ function returnLyrics(artist,track,language,handlerRes){
       console.log(ApiReqString);
 // apikey:process.env.apiKey
 
-console.log(ApiReqString);
+console.log(ApiReqString); 
 
   http.get(ApiReqString, function(res){
     res.on('data', function(chunk) {
